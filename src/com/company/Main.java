@@ -82,13 +82,15 @@ public class Main {
     2. inaccuracy in user interface
 
     output:
-    Select, what operation I must to do? (available only +, -, *, /)
-    ;
-    Select, what operation I must to do? (available only +, -, *, /)
-    ;
-    Select, what operation I must to do? (available only +, -, *, /)
+    Please enter first number
+    -1
+    Please enter first number
+    -1
+    Please enter first number
+    -1
+    Please enter first number
 
-    not clear for user what is wrong
+    not clear for user what is wrong and also (important) why is it wrong??
 
      */
 
