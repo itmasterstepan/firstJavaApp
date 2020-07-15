@@ -3,11 +3,6 @@ import java.util.Scanner;
 
 public class Calculator {
 
-
-//    public /* final */ static String [] msgArr = {   // it shouldn't be public. Also better use local variables in functions for now.
-//
-//    };
-
     public static void main (String[] args) {
 
         int firstNum = 0;
@@ -85,7 +80,7 @@ public class Calculator {
 
                 default:
                     System.out.println("You entered an incorrect value");
-                    System.out.println("Here is a list of available values (+, -, *, /).");
+                    System.out.println("List of available values (+, -, *, /).");
             }
         }
         // what if result of the operation is 0 or less (example [1 - 2])
