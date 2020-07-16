@@ -14,22 +14,22 @@ public class Calculator {
         boolean secondNumHasBeenSet = false;
         boolean operatorHasBeenSet = false;
 
-        Scanner scannerObj = new Scanner(System.in);
+        Scanner scannerObj = new Scanner (System.in);
 
 
         //Check type of first element on int.
         while (!firstNumHasBeenSet) {
             // 1. redundant do | 2. what if user enters -2
 
-            System.out.println("Please enter first number");
+            System.out.println ("Please enter first number");
 
-            while (!scannerObj.hasNextInt()) {
-                System.out.println("That not a number!");
-                System.out.println("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                scannerObj.next();
+            while (!scannerObj.hasNextInt ()) {
+                System.out.println ("That not a number!");
+                System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
+                scannerObj.next ();
             }
 
-            firstNum = scannerObj.nextInt();
+            firstNum = scannerObj.nextInt ();
 
             firstNumHasBeenSet = true;
         }
@@ -38,24 +38,24 @@ public class Calculator {
         //Check type of second element on int.
 
         while (!secondNumHasBeenSet) { // 1. redundant do | 2. what if user enters -2
-            System.out.println("Please enter second number");
+            System.out.println ("Please enter second number");
 
-            while (!scannerObj.hasNextInt()) {
-                System.out.println("That not a number!");
-                System.out.println("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                scannerObj.next();
+            while (!scannerObj.hasNextInt ()) {
+                System.out.println ("That not a number!");
+                System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
+                scannerObj.next ();
             }
 
-            secondNum = scannerObj.nextInt();
+            secondNum = scannerObj.nextInt ();
 
             secondNumHasBeenSet = true;
         }
 
         //Check operator code
         while (!operatorHasBeenSet){ // redundant do
-            System.out.println("Select, what operation I must to do? (available only +, -, *, /)");
+            System.out.println ("Select, what operation I must to do? (available only +, -, *, /)");
 
-            operator = scannerObj.next().charAt(0);
+            operator = scannerObj.next ().charAt (0);
 
             switch (operator){   // switch without default case
                 case '+':
@@ -79,16 +79,16 @@ public class Calculator {
                     break;
 
                 default:
-                    System.out.println("You entered an incorrect value");
-                    System.out.println("List of available values (+, -, *, /).");
+                    System.out.println ("You entered an incorrect value");
+                    System.out.println ("List of available values (+, -, *, /).");
             }
         }
         // what if result of the operation is 0 or less (example [1 - 2])
 
         //  - do not forget to close resources that do in-memory buffering
-        scannerObj.close();
+        scannerObj.close ();
 
-        System.out.println( "Our result" + " [ "+ firstNum +""+ operator +""+ secondNum +" ] = " + result );
+        System.out.println ( "Our result" + " [ ("+ firstNum +") "+ operator +" ("+ secondNum +") ] = " + result );
 
     }
 
