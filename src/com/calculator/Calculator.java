@@ -23,15 +23,15 @@ public class Calculator {
 
             System.out.println ("Please enter first number");
 
-            while (!scannerObj.hasNextInt ()) {
+            if (scannerObj.hasNextInt ()){
+                firstNum = scannerObj.nextInt ();
+                firstNumHasBeenSet = true;
+            }else{
                 System.out.println ("That not a number!");
                 System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
                 scannerObj.next ();
             }
 
-            firstNum = scannerObj.nextInt ();
-
-            firstNumHasBeenSet = true;
         }
 
 
@@ -40,15 +40,17 @@ public class Calculator {
         while (!secondNumHasBeenSet) { // 1. redundant do | 2. what if user enters -2
             System.out.println ("Please enter second number");
 
-            while (!scannerObj.hasNextInt ()) {
+            if(scannerObj.hasNextInt ()){
+                secondNum = scannerObj.nextInt ();
+                secondNumHasBeenSet = true;
+
+            }else{
                 System.out.println ("That not a number!");
                 System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
                 scannerObj.next ();
             }
 
-            secondNum = scannerObj.nextInt ();
 
-            secondNumHasBeenSet = true;
         }
 
         //Check operator code
