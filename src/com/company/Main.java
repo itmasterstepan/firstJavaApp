@@ -35,16 +35,7 @@ public class Main {
             firstNum = scannerObj.nextInt();
         }
 
-        //Check type of second element on int.
-        while (secondNum <= 0) { // 1. redundant do | 2. what if user enters -2
-            printMsgInNewLine(1);
-            while (!scannerObj.hasNextInt()) {
-                printErrorMsgInNewLine(0);
-                printErrorMsgInNewLine(1);
-                scannerObj.next();
-            }
-            secondNum = scannerObj.nextInt();
-        }
+        int[] arr;
 
         //Check operator code
         do { // redundant do
