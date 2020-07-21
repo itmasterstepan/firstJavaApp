@@ -1,33 +1,33 @@
-package com.calculator;
-import java.util.Scanner;
+package com.javaproject;
 
-public class Calculator {
+public class Calculator extends Main {
 
     private static int firstNum;
     private static int secondNum;
     private static char operator;
     private static int result;
 
-    public static void main (String[] args) {
+    public static void run () {
+
         int repeatNumber = 10;
-        CalculateWithRepeatNumber(repeatNumber);
+        CalculateWithRepeatNumber (repeatNumber);
+
     }
 
-    private static void CalculateWithRepeatNumber(int maxIterations){
-        Scanner reader = new Scanner (System.in);
+    private static void CalculateWithRepeatNumber (int maxIterations){
 
         for (int i=1; i <= maxIterations; i++){
-            getFirstNumber(reader);
-            getSecondNumber(reader);
-            getOperator(reader);
-            getOurResult(reader);
+            getFirstNumber();
+            getSecondNumber();
+            getOperator();
+            getOurResult();
         }
 
         reader.close ();
     }
 
 
-    private static void getFirstNumber(Scanner reader){
+    private static void getFirstNumber (){
 
         boolean firstNumHasBeenSet = false;
 
@@ -48,7 +48,7 @@ public class Calculator {
         }
     }
 
-    private static void getSecondNumber(Scanner reader){
+    private static void getSecondNumber (){
         boolean secondNumHasBeenSet = false;
 
         while (!secondNumHasBeenSet) {
@@ -68,7 +68,7 @@ public class Calculator {
         }
     }
 
-    private static void getOperator(Scanner reader){
+    private static void getOperator (){
         boolean operatorHasBeenSet = false;
 
         while (!operatorHasBeenSet){
@@ -106,7 +106,7 @@ public class Calculator {
         }
     }
 
-    private static void getOurResult(Scanner reader){
+    private static void getOurResult (){
         System.out.println ( "Our result" + " [ ("+ firstNum +") "+ operator +" ("+ secondNum +") ] = " + result );
         System.out.println ( "___________________________________________________________________________________");
     }
