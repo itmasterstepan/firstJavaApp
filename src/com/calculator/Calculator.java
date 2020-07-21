@@ -3,61 +3,80 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    public static void main (String[] args) {
+    private static int firstNum;
+    private static int secondNum;
+    private static int operator;
+    private static int result;
 
-        int firstNum = 0;
-        int secondNum = 0;
-        int result = 0;
-        char operator = 0;
+    public static void main (String[] args) {
+        int repeatNumber = 10;
+        CalculateWithRepeatNumber(repeatNumber);
+    }
+
+    private static void CalculateWithRepeatNumber(int maxIterations){
+        Scanner reader = new Scanner (System.in);
+
+        for (int i=1; i <= maxIterations; i++){
+            getFirstNumber(reader);
+            getSecondNumber(reader);
+            getOperator(reader);
+            getOurResult(reader);
+        }
+
+        reader.close ();
+
+    }
+
+
+    private static void getFirstNumber(Scanner reader){
 
         boolean firstNumHasBeenSet = false;
-        boolean secondNumHasBeenSet = false;
-        boolean operatorHasBeenSet = false;
 
-        Scanner scannerObj = new Scanner (System.in);
-
-
-        //Check type of first element on int.
         while (!firstNumHasBeenSet) {
             // 1. redundant do | 2. what if user enters -2
 
             System.out.println ("Please enter first number");
 
-            if (scannerObj.hasNextInt ()){
-                firstNum = scannerObj.nextInt ();
+            if (reader.hasNextInt ()){
+                firstNum = reader.nextInt ();
                 firstNumHasBeenSet = true;
+
             }else{
                 System.out.println ("That not a number!");
                 System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                scannerObj.next ();
+                reader.next ();
             }
 
         }
+    }
 
-
-        //Check type of second element on int.
+    private static void getSecondNumber(Scanner reader){
+        boolean secondNumHasBeenSet = false;
 
         while (!secondNumHasBeenSet) { // 1. redundant do | 2. what if user enters -2
             System.out.println ("Please enter second number");
 
-            if(scannerObj.hasNextInt ()){
-                secondNum = scannerObj.nextInt ();
+            if(reader.hasNextInt ()){
+                secondNum = reader.nextInt ();
                 secondNumHasBeenSet = true;
 
             }else{
                 System.out.println ("That not a number!");
                 System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                scannerObj.next ();
+                reader.next ();
             }
 
 
         }
+    }
 
-        //Check operator code
+    private static void getOperator(Scanner reader){
+        boolean operatorHasBeenSet = false;
+
         while (!operatorHasBeenSet){ // redundant do
             System.out.println ("Select, what operation I must to do? (available only +, -, *, /)");
 
-            operator = scannerObj.next ().charAt (0);
+            operator = reader.next().charAt(0);
 
             switch (operator){   // switch without default case
                 case '+':
@@ -85,38 +104,10 @@ public class Calculator {
                     System.out.println ("List of available values (+, -, *, /).");
             }
         }
-        // what if result of the operation is 0 or less (example [1 - 2])
-
-        //  - do not forget to close resources that do in-memory buffering
-        scannerObj.close ();
-
-        System.out.println ( "Our result" + " [ ("+ firstNum +") "+ operator +" ("+ secondNum +") ] = " + result );
-
     }
 
-
-
-    // 1. spaces before bracket
-
-    /*
-    2. inaccuracy in user interface
-
-    output:
-    Please enter first number
-    -1
-    Please enter first number
-    -1
-    Please enter first number
-    -1
-    Please enter first number
-
-    not clear for user what is wrong and also (important) why is it wrong??
-
-     */
-
-    // 3. overall over complication
-
-    // 4. push with redundant files (.idea/, .iml)
-
-    // 5. class name not related to the app work (minor thing)
+    private static void getOurResult(Scanner reader){
+        System.out.println ( "Our result" + " [ ("+ firstNum +") "+ operator +" ("+ secondNum +") ] = " + result );
+        System.out.println ( "___________________________________________________________________________________");
+    }
 }
