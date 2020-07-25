@@ -1,113 +1,151 @@
 package com.javaproject;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
 
-public class Calculator extends Main {
+public class Calculator {
 
-    private static int firstNum;
-    private static int secondNum;
-    private static char operator;
-    private static int result;
+    private int firstNum;
+    private int secondNum;
+    private char operator;
+    private int result;
+    private Scanner scanner;
+    private Collections ArrayUtils;
 
-    public static void run () {
+    public static void main (String[] args) {
 
-        int repeatNumber = 10;
-        CalculateWithRepeatNumber (repeatNumber);
+        Calculator self = new Calculator ();
+
+        self.scanner = new Scanner (System.in);
+
+        self.CalculateWithRepeatNumber (1);
+        self.reverseArray();
+        self.occurrencesOfTheRequiredNumberInArray();
+
+
+        self.scanner.close ();
 
     }
 
-    private static void CalculateWithRepeatNumber (int maxIterations){
 
-        for (int i=1; i <= maxIterations; i++){
+    /**
+     * CalculateWithRepeatNumber
+     * @param maxIterations
+     */
+    private void CalculateWithRepeatNumber (int maxIterations){
+
+        for (int i=1; i <= maxIterations; i++) {
             getFirstNumber();
             getSecondNumber();
             getOperator();
             getOurResult();
         }
 
-        reader.close ();
+        scanner.close ();
     }
 
 
-    private static void getFirstNumber (){
+    /**
+     * getFirstNumber
+     */
+    private void getFirstNumber (){
 
-        boolean firstNumHasBeenSet = false;
+        System.out.println ("Please enter first number");
 
-        while (!firstNumHasBeenSet) {
-
-            System.out.println ("Please enter first number");
-
-            if (reader.hasNextInt ()){
-                firstNum = reader.nextInt ();
-                firstNumHasBeenSet = true;
-
-            }else{
-                System.out.println ("That not a number!");
-                System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                reader.next ();
-            }
-
+        while ( !scanner.hasNextInt () ) {
+            System.out.println (
+                    "Invalid first number. Try again:"+ scanner.next ()
+            );
         }
+
+        firstNum = scanner.nextInt ();
     }
 
-    private static void getSecondNumber (){
-        boolean secondNumHasBeenSet = false;
+    /**
+     * getSecondNumber
+     */
+    private void getSecondNumber (){
 
-        while (!secondNumHasBeenSet) {
-            System.out.println ("Please enter second number");
+        System.out.println ("Please enter second number");
 
-            if(reader.hasNextInt ()){
-                secondNum = reader.nextInt ();
-                secondNumHasBeenSet = true;
-
-            }else{
-                System.out.println ("That not a number!");
-                System.out.println ("You must input a number value like( ...,-2,-1,0,1,2,.... )");
-                reader.next ();
-            }
-
-
+        while (!scanner.hasNextInt ()) {
+            System.out.println (
+                    "Invalid second number. Try again:" + scanner.next ()
+            );
         }
+
+        secondNum = scanner.nextInt ();
     }
 
-    private static void getOperator (){
-        boolean operatorHasBeenSet = false;
+    /**
+     * getOperator
+     */
+    private void getOperator (){
 
-        while (!operatorHasBeenSet){
-            System.out.println ("Select, what operation I must to do? (available only +, -, *, /)");
+        System.out.println ("Select action (available only [+], [-], [*], [/])");
 
-            operator = reader.next().charAt(0);
-
-            System.out.println (operator);
-
-            switch (operator){
-                case '+':
-                    result = firstNum + secondNum;
-                    operatorHasBeenSet = true;
-                    break;
-
-                case '-':
-                    result = firstNum - secondNum;
-                    operatorHasBeenSet = true;
-                    break;
-
-                case '*':
-                    result = firstNum * secondNum;
-                    operatorHasBeenSet = true;
-                    break;
-
-                case '/':
-                    result = firstNum / secondNum;
-                    operatorHasBeenSet = true;
-                    break;
-
-                default:
-                    System.out.println ("You entered an incorrect value");
-                    System.out.println ("List of available values (+, -, *, /).");
-            }
+        while (!scanner.hasNext( "[+\\-*/]") ) {
+            System.out.println (
+                    "Invalid action. (available only [+], [-], [*], [/]). /n Try again:" + scanner.next ()
+            );
         }
+
+        operator = scanner.next ().charAt (0);
+
+        switch (operator) {
+            case '+': result = firstNum + secondNum;
+
+            case '-': result = firstNum - secondNum;
+
+            case '*': result = firstNum * secondNum;
+
+            case '/': result = firstNum / secondNum;
+
+            default:  result = 0;
+        }
+
     }
 
-    private static void getOurResult (){
+
+    /**
+     * getOurResult
+     */
+    private void getOurResult (){
         System.out.println ( "Our result" + " [ ("+ firstNum +") "+ operator +" ("+ secondNum +") ] = " + result );
         System.out.println ( "___________________________________________________________________________________");
+    }
+
+
+    // Array section
+
+    private void reverseArray(){
+        System.out.println ("Select action (available only [+], [-], [*], [/])");
+
+        while (!scanner.hasNext ( "[0-9,]+$") ) {
+            System.out.println (
+                "Invalid array. (need to add array like this [11,34,3,45,23,5,67]). /n Try again:" + scanner.next ()
+            );
+        }
+
+
+        String str = scanner.next ();
+        int[] numArr = Arrays.stream(str.split(",")).mapToInt(
+                Integer::parseInt
+        ).toArray();
+
+        System.out.println("Our array before reverse: " + Arrays.toString(numArr) );
+
+        for(int i=0; i< numArr.length/2; i++){
+            int temp = numArr[i];
+            numArr[i] = numArr[numArr.length -i -1];
+            numArr[numArr.length -i -1] = temp;
+        }
+
+        System.out.println("Our array after reverse: " + Arrays.toString(numArr) );
+
+    }
+
+    private void occurrencesOfTheRequiredNumberInArray(){
+        //System.out.println ("empty");
     }
 }
